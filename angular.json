@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Artemis_I": {
+    "artemis-i": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Artemis_I:build:production"
+              "buildTarget": "artemis-i:build:production"
             },
             "development": {
-              "buildTarget": "Artemis_I:build:development"
+              "buildTarget": "artemis-i:build:development"
             }
           },
           "defaultConfiguration": "development"
