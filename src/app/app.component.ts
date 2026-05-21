@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { RobotStateService } from './services/robot-state.service';
+import { RobotState } from './models/robot-state.model';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +12,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'artemis-i';
+  robotStateService: RobotStateService = new RobotStateService;
+  robot: RobotState | undefined;
+  
+
+  ngOnInit(): void {
+  this.robotStateService.getRobotState().subscribe((robotState: RobotState) => {
+    console.log(robotState);
+    this.robot = robotState;
+  });
+}
 }
