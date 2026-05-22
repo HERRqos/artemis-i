@@ -20,10 +20,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('artemis-i');
   });
 
-  it('should render title', () => {
+  it('should render the robot dashboard', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, artemis-i');
+    expect(compiled.querySelector('app-robot-dashboard')).toBeTruthy();
   });
 });
