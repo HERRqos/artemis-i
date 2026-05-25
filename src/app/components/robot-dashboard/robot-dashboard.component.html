@@ -1,0 +1,43 @@
+<section class="dashboard" data-testid="robot-dashboard" *ngIf="robot">
+    <header class="dashboard__header">
+        <p class="dashboard__eyebrow">Robot Monitoring Dashboard</p>
+        <h1 data-testid="rotobt-name">{{ robot.name }}</h1>
+    </header>
+    <div class="dashboard__grid">
+    <article class="dashboard__card">
+      <span>Status</span>
+      <strong data-testid="robot-status">{{ robot.status }}</strong>
+    </article>
+
+    <article class="dashboard__card">
+      <span>Battery</span>
+      <strong data-testid="battery-level">{{ robot.batteryLevel }}%</strong>
+    </article>
+
+    <article class="dashboard__card">
+      <span>Connection</span>
+      <strong data-testid="connection-status">{{ robot.connectionStatus }}</strong>
+    </article>
+
+    <article class="dashboard__card">
+      <span>Current Task</span>
+      <strong data-testid="current-task">
+        {{ robot.currentTask || 'No active task' }}
+      </strong>
+    </article>
+  </div>
+
+  <section class="dashboard__alerts">
+    <h2>Sensor Alerts</h2>
+
+    <p data-testid="no-sensor-alerts" *ngIf="robot.sensorAlerts.length === 0">
+      No active sensor alerts
+    </p>
+
+    <ul data-testid="sensor-alerts" *ngIf="robot.sensorAlerts.length > 0">
+      <li *ngFor="let alert of robot.sensorAlerts">
+        {{ alert }}
+      </li>
+    </ul>
+  </section>
+</section>
