@@ -51,3 +51,19 @@
     grid-template-columns: 1fr;
   }
 }
+
+.status-idle {
+  color: green;
+}
+
+.status-active {
+  color: blue;
+}
+
+.status-charging {
+  color: orange;
+}
+
+.status-error {
+  color: red;
+}
