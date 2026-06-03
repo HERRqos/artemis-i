@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { RobotStateService } from './robot-state.service';
 
-describe('RobotStateService', () => {
+describe('Robot services testing', () => {
   let service: RobotStateService;
 
   beforeEach(() => {

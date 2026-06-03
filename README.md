@@ -2,6 +2,31 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
+## Features
+
+- Robot status monitoring
+- Battery monitoring
+- Sensor alert visualization
+- Simulated robot actions
+- Automated testing
+
+## Project Architecture
+
+Angular Dashboard
+→ RobotStateService
+→ Simulated Robot State
+
+## Planned Automation
+
+- Playwright E2E Tests
+- Cucumber BDD Scenarios
+- API Tests
+- GitHub Actions CI
+
+## Learning Objectives
+
+This project demonstrates practical test automation techniques using TypeScript and Playwright in a robotics-inspired dashboard application.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

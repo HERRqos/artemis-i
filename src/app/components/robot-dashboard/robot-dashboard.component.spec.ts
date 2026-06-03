@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RobotDashboardComponent } from './robot-dashboard.component';
 import { RobotState } from '../../models/robot-state.model';
 
-describe('RobotDashboardComponent', () => {
+describe('Dashboard components testing', () => {
   let component: RobotDashboardComponent;
   let fixture: ComponentFixture<RobotDashboardComponent>;
   const mockRobot: RobotState={
@@ -59,7 +59,7 @@ describe('RobotDashboardComponent', () => {
 
   // Test: the Alert has been cleared
 
-  it('shoul clear alerts and return to idle',()=>{
+  it('should clear alerts and return to idle',()=>{
     component.robot={
       ...mockRobot,
       status: 'error',
