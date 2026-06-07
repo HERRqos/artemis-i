@@ -3,7 +3,7 @@ import { RobotDashboardPage } from "./pages/RobotDashboardPage";
 test('Dashboar loads Correctly',async ({ page })=>{ 
     const robotDashboard= new RobotDashboardPage(page);
     await robotDashboard.open();
-    await expect(robotDashboard.dasboard()).toBeVisible();
+    await expect(robotDashboard.dashboard()).toBeVisible();
     await expect(robotDashboard.status()).toHaveText('idle');
     await expect(robotDashboard.battery()).toHaveText('78%');
     await expect(robotDashboard.name()).toHaveText('Artemis I');
