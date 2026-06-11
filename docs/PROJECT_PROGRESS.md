@@ -490,11 +490,60 @@ Week 1:
 
 Week 2:
 
-⬜ Not Started
+
+## Week 2 Lessons Learned
+
+### Naming consistency matters
+
+I discovered that typos in selectors and Page Object methods
+(e.g. `dasboard()` instead of `dashboard()`) can introduce
+confusion and make tests harder to maintain.
+
+This reinforced the importance of using clear and consistent
+naming conventions throughout the application and test suite.
+
+### Stable selectors improve maintainability
+
+Using `data-testid` attributes made Playwright tests much
+more robust than relying on CSS classes or DOM structure.
+
+### Page Objects improve readability
+
+Moving selectors and interactions into a Page Object reduced
+duplication and made tests easier to read.
+
+### Test code has its own dependencies
+
+While creating helper methods inside the Page Object,
+I encountered an error because `expect` was not imported.
+
+This highlighted that test utilities and assertions are
+dependencies that must be explicitly managed, just like
+application code.
 
 Week 3:
 
-⬜ Not Started
+### Module and Tooling Compatibility
+
+While introducing Cucumber, I encountered compatibility
+issues related to module systems and package versions.
+
+The latest package version did not integrate cleanly with
+the existing TypeScript setup, so I investigated version
+compatibility and selected a stable configuration.
+
+This highlighted the importance of understanding tooling,
+module systems, and project configuration rather than
+relying solely on installation guides.
+
+### Test Discovery Configuration
+
+Running Cucumber required explicit configuration for
+feature files, step definitions, and support files.
+
+I learned that test frameworks often require discovery
+configuration and should not be expected to automatically
+locate project resources.
 
 Week 4:
 
