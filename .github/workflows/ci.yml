@@ -36,3 +36,6 @@ jobs:
           npx wait-on http://localhost:4200 --timeout120000
           npx playwright test
           npm run bdd
+        e2e:
+          runs-on: ubuntu-latest
+          timeout-minutes: 15
