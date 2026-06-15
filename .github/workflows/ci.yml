@@ -30,14 +30,9 @@ jobs:
       - name: Angular Unit Tests
         run: npm test -- --watch=false --browsers=ChromeHeadless
 
-      - name: Start the app
-        run: npm start &
-
-      - name: Wait until the app is up
-        run: npx wait-on http://localhost:4200 --timeout 120000
-
-      - name: Playwright Tests
-        run: npx playwright test
-
-      - name: Cucumber Tests
-        run: npm run bdd
+      - name: E2E Tests (Playwright + cucumber)
+        run: |
+          npm start &
+          npx wait-on http://localhost:4200 --timeout120000
+          npx playwritght test
+          npm run bdd
