@@ -78,8 +78,9 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
   webServer: {
-    command: 'ng serve --host 0.0.0.0',
+    command: 'start',
     url: 'http://127.0.0.1:4200',
     reuseExistingServer: !process.env['CI'],
+    timeout:120_0000,
   },
 });
