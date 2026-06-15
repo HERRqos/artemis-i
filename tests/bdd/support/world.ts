@@ -6,10 +6,14 @@ export class CustomWorld extends World {
     browser!: Browser;
     context!: BrowserContext;
     page!: Page;
-    dashboard!:RobotDashboardPage;
+    private _dashboard?: RobotDashboardPage;
 
     constructor(options: IWorldOptions) {
         super(options);
+    }
+    
+    get dashboard(): RobotDashboardPage{
+        return (this._dashboard ??= new RobotDashboardPage(this.page));
     }
 }
 setWorldConstructor(CustomWorld);
