@@ -34,5 +34,5 @@ jobs:
         run: |
           npm start &
           npx wait-on http://localhost:4200 --timeout120000
-          npx playwritght test
+          npx playwright test
           npm run bdd
