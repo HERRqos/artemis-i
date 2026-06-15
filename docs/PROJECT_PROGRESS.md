@@ -545,6 +545,510 @@ I learned that test frameworks often require discovery
 configuration and should not be expected to automatically
 locate project resources.
 
+
+# Artemis I - Week 3 Completion Report
+
+## Objective
+
+The objective of Week 3 was to move beyond basic Playwright UI testing and introduce a more professional automation architecture by implementing:
+
+* Cucumber/Gherkin
+* BDD structure
+* Playwright integration
+* API testing
+* CI/CD automation
+
+The focus was on understanding how different automation layers interact rather than simply increasing the number of tests.
+
+---
+
+# Starting Point
+
+At the beginning of Week 3, the project already contained:
+
+* Angular Dashboard
+* RobotState model
+* RobotStateService
+* Interactive robot actions
+* Unit tests
+* Playwright smoke tests
+* Playwright functional tests
+* Page Object Model implementation
+
+The project structure was stable enough to support a BDD layer.
+
+---
+
+# Cucumber Installation
+
+Cucumber was introduced to support Behavior Driven Development (BDD).
+
+Installed packages:
+
+```bash
+npm install --save-dev @cucumber/cucumber
+npm install --save-dev ts-node
+npm install --save-dev tsconfig-paths
+```
+
+---
+
+# Version Compatibility Challenges
+
+During installation, compatibility issues appeared between the latest Cucumber release and the current TypeScript project setup.
+
+Problems observed:
+
+* Module loading conflicts
+* Differences between CommonJS and ES Modules
+* Execution issues when running cucumber-js
+
+Initial execution failed due to incompatibilities between package versions and module resolution.
+
+Resolution:
+
+A stable Cucumber version was selected that aligned with the project's TypeScript configuration.
+
+Lesson learned:
+
+Framework documentation often assumes ideal project configurations. Real-world integration frequently requires version validation and troubleshooting.
+
+---
+
+# Test Discovery Configuration
+
+Running:
+
+```bash
+npm run bdd
+```
+
+did not initially execute the feature files.
+
+Reason:
+
+Cucumber could not automatically locate:
+
+* Feature files
+* Step definitions
+* Support files
+
+Solution:
+
+Configuration files were introduced:
+
+```text
+cucumber.js
+tsconfig.json
+```
+
+These files explicitly defined:
+
+* Feature directories
+* Step directories
+* Support directories
+* TypeScript execution configuration
+
+Lesson learned:
+
+Test frameworks require explicit discovery configuration and should not be expected to automatically locate project resources.
+
+---
+
+# BDD Folder Structure
+
+Created:
+
+```text
+tests/
+│
+├── api/
+│
+├── pages/
+│
+├── bdd/
+│   ├── features/
+│   ├── steps/
+│   └── support/
+│
+└── playwright/
+```
+
+Purpose:
+
+* Separate UI automation
+* Separate BDD specifications
+* Separate API testing
+
+This structure improves maintainability as the project grows.
+
+---
+
+# First Feature File
+
+Created:
+
+```gherkin
+Feature: Robot Status Management
+
+  Scenario: Operator starts a robot task
+
+    Given the robot dashboard is open
+    When the operator starts a task
+    Then the robot status should be "active"
+```
+
+Important observation:
+
+The feature describes business behavior rather than implementation details.
+
+Preferred:
+
+```gherkin
+When the operator starts a task
+```
+
+Avoided:
+
+```gherkin
+When I click the Start Task button
+```
+
+This keeps the feature focused on requirements rather than UI implementation.
+
+---
+
+# Step Definitions
+
+Initial implementation used placeholder logging:
+
+```typescript
+Given(...)
+When(...)
+Then(...)
+```
+
+with console output.
+
+Example output:
+
+```text
+Dashboard opened
+Task started
+Expected status: active
+```
+
+BDD execution result:
+
+```text
+1 scenario (1 passed)
+3 steps (3 passed)
+```
+
+This confirmed that:
+
+* Feature discovery worked
+* Step matching worked
+* Cucumber configuration worked
+
+---
+
+# World and Shared Context
+
+To prepare Playwright integration, a custom World object was introduced.
+
+Purpose:
+
+Store shared execution objects such as:
+
+```typescript
+Page
+RobotDashboardPage
+```
+
+This allows step definitions to share browser state without duplicating setup logic.
+
+Architecture:
+
+```text
+Feature File
+      ↓
+Step Definitions
+      ↓
+World
+      ↓
+RobotDashboardPage
+      ↓
+Playwright
+      ↓
+Angular Dashboard
+```
+
+Lesson learned:
+
+The World acts as the shared execution context between Cucumber and Playwright.
+
+---
+
+# Page Object Model Improvements
+
+The RobotDashboardPage was expanded and refined.
+
+Implemented concepts:
+
+* Stable selectors
+* Encapsulated interactions
+* Reusable UI operations
+
+Examples:
+
+```typescript
+status()
+battery()
+connectionStatus()
+currentTask()
+dashboard()
+```
+
+Additional action methods:
+
+```typescript
+startTask()
+chargeRobot()
+simulateError()
+resetError()
+```
+
+Lesson learned:
+
+Page Objects should expose business actions rather than low-level UI interactions.
+
+Preferred:
+
+```typescript
+await dashboard.startTask();
+```
+
+Instead of:
+
+```typescript
+await page.getByTestId('start-task-button').click();
+```
+
+---
+
+# Naming and Selector Lessons
+
+Several small issues highlighted the importance of consistency.
+
+Examples:
+
+* Typographical errors in method names
+* Selector naming inconsistencies
+* Missing imports such as expect
+
+Lesson learned:
+
+Automation frameworks are highly dependent on:
+
+* Naming consistency
+* Stable selectors
+* Explicit imports
+
+Minor mistakes can cause test failures even when application functionality is correct.
+
+---
+
+# API Testing
+
+Week 3 introduced API validation.
+
+Project goal:
+
+Demonstrate Playwright API testing capabilities without creating unnecessary backend complexity.
+
+Approach:
+
+Use mock robot state data served by Angular.
+
+Example endpoint:
+
+```text
+/assets/mock-data/robot-state.json
+```
+
+Validation objectives:
+
+* Response availability
+* Response structure
+* Battery level validation
+* Robot status validation
+
+Lesson learned:
+
+Automation engineers should validate both GUI behavior and API contracts.
+
+---
+
+# GitHub Actions CI/CD
+
+Continuous Integration was introduced using GitHub Actions.
+
+Workflow objectives:
+
+* Install dependencies
+* Execute Angular unit tests
+* Execute Playwright tests
+* Execute Cucumber tests
+
+Example pipeline stages:
+
+```text
+npm ci
+
+ng test
+
+npx playwright test
+
+npm run bdd
+```
+
+Purpose:
+
+Ensure automated validation on:
+
+* Push
+* Pull Request
+
+---
+
+# Architecture Achieved
+
+At the end of Week 3 the project architecture became:
+
+```text
+Angular Dashboard
+        │
+        ▼
+RobotStateService
+        │
+        ▼
+Robot State Data
+
+        ▲
+        │
+
+Playwright
+        ▲
+        │
+
+Page Objects
+        ▲
+        │
+
+Cucumber Steps
+        ▲
+        │
+
+Feature Files
+```
+
+---
+
+# Week 3 Key Lessons Learned
+
+## Framework Versions Matter
+
+Latest package versions are not always the most productive choice.
+
+Compatibility should be validated before adopting major updates.
+
+---
+
+## Module Systems Matter
+
+Understanding:
+
+* CommonJS
+* ES Modules
+
+became necessary when integrating Cucumber into the TypeScript project.
+
+---
+
+## Configuration Is Part of Engineering
+
+Successful automation depends on:
+
+* Correct discovery paths
+* Runtime configuration
+* Project structure
+
+not only on writing test code.
+
+---
+
+## Page Objects Improve Maintainability
+
+Centralizing selectors and actions reduced duplication and improved readability.
+
+---
+
+## BDD Describes Behavior
+
+Feature files should describe business actions and expected outcomes rather than UI implementation details.
+
+---
+
+## Automation Exists at Multiple Layers
+
+A complete automation strategy includes:
+
+* Unit tests
+* UI tests
+* BDD tests
+* API tests
+* CI execution
+
+rather than relying exclusively on browser automation.
+
+---
+
+# Week 3 Completion Status
+
+Completed:
+
+* Cucumber installation
+* Cucumber configuration
+* Feature files
+* Step definitions
+* BDD execution
+* World architecture
+* Page Object integration
+* API testing structure
+* GitHub Actions preparation
+
+Status:
+
+✅ Week 3 Complete
+
+---
+
+# Next Focus: Week 4
+
+Week 4 will focus on:
+
+* Documentation
+* Test Strategy
+* Architecture diagrams
+* README improvements
+* Repository cleanup
+* Interview preparation
+
+The objective is no longer to add significant functionality, but to improve professionalism and presentation quality.
+
+
+
 Week 4:
 
 ⬜ Not Started
