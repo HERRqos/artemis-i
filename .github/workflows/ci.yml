@@ -33,7 +33,20 @@ jobs:
       - name: E2E Tests (Playwright + cucumber)
         run: |
           npm start &
-          npx wait-on http://localhost:4200 --timeout120000
+          npx wait-on http://localhost:4200 --timeout 120000
           npx playwright test
           npm run bdd
-        
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 3
+      - name: Upload Cucumber report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: cucumber-report.html
+          retention-days: 3
