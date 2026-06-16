@@ -1,10 +1,12 @@
 import {test, expect} from "@playwright/test";
-test('should display the Artemis I dashboard',async ({ page })=>{ 
-    await page.goto('/');
-    await expect(page.getByTestId('robot-dashboard')).toBeVisible();
-    await expect(page.getByTestId('robot-name')).toHaveText('Artemis I');
-    await expect(page.getByTestId('robot-status')).toHaveText('idle');
-    await expect(page.getByTestId('battery-level')).toHaveText('78%');
-    await expect(page.getByTestId('connection-status')).toHaveText('online');
-    await expect(page.getByTestId('current-task')).toHaveText('No active task');
+import { RobotDashboardPage } from "./pages/RobotDashboardPage";
+test('Dashboar loads Correctly',async ({ page })=>{ 
+    const robotDashboard= new RobotDashboardPage(page);
+    await robotDashboard.open();
+    await expect(robotDashboard.dashboard()).toBeVisible();
+    await expect(robotDashboard.status()).toHaveText('idle');
+    await expect(robotDashboard.battery()).toHaveText('78%');
+    await expect(robotDashboard.name()).toHaveText('Artemis I');
+    await expect(robotDashboard.connectionStatus()).toHaveText('online');
+    await expect(robotDashboard.currentTask()).toHaveText('No active task');
  });

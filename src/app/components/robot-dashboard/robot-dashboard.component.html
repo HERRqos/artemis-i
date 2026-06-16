@@ -1,12 +1,16 @@
 <section class="dashboard" data-testid="robot-dashboard" *ngIf="robot">
-    <header class="dashboard__header">
-        <p class="dashboard__eyebrow">Robot Monitoring Dashboard</p>
-        <h1 data-testid="robot-name">{{ robot.name }}</h1>
-    </header>
-    <div class="dashboard__grid">
+  <header class="dashboard__header">
+    <p class="dashboard__eyebrow">Robot Monitoring Dashboard</p>
+    <h1 data-testid="robot-name">{{ robot.name }}</h1>
+  </header>
+  <div class="dashboard__grid">
     <article class="dashboard__card">
       <span>Status</span>
-      <strong data-testid="robot-status">{{ robot.status }}</strong>
+      <strong data-testid="robot-status" 
+      [class.status-idle]="robot.status === 'idle'"
+      [class.status-active]="robot.status === 'active'" 
+      [class.status-charging]="robot.status === 'charging'"
+      [class.status-error]="robot.status === 'error'">{{ robot.status }}</strong>
     </article>
 
     <article class="dashboard__card">
@@ -39,5 +43,11 @@
         {{ alert }}
       </li>
     </ul>
+  </section>
+  <section class="dashboard_actions">
+    <button type="button" data-testid="start-task-button" (click)="startTask()">Start Task</button>
+    <button type="button" data-testid="charge-robot-button" (click)="sendToCharge()">Charge Robot</button>
+    <button type="button" data-testid="simulate-error-button" (click)="simulateError()">Simulate Error</button>
+    <button type="button" data-testid="reset-error-button" (click)="resetError()">Reset Error</button>
   </section>
 </section>

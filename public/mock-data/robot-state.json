@@ -1,0 +1,9 @@
+{
+  "id": "artemis-unit-01",
+  "name": "Artemis I",
+  "status": "idle",
+  "batteryLevel": 78,
+  "connectionStatus": "online",
+  "currentTask": null,
+  "sensorAlerts": []
+}

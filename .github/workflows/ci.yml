@@ -1,0 +1,39 @@
+name: Artemis CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Angular Unit Tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - name: E2E Tests (Playwright + cucumber)
+        run: |
+          npm start &
+          npx wait-on http://localhost:4200 --timeout120000
+          npx playwright test
+          npm run bdd
+        
