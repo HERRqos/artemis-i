@@ -36,6 +36,7 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/docs/PROJECT_PROGRESS.md
 
 # System files
 .DS_Store
@@ -48,3 +49,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Cucumber
+
+/cucumber-report.html

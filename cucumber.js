@@ -1,8 +1,14 @@
-process.env.TS_NODE_PROJECT="tests/bdd/tsconfig.json";
-module.exports={
-    default:{
-        requireModule:['ts-node/register'],
-        require:['tests/bdd/steps/**/*.ts','tests/bdd/support/**/*.ts'],
-        paths:['tests/bdd/features/**/*.feature'],
-    },
+module.exports = {
+  default: {
+    requireModule: ['ts-node/register'],
+    require: [
+      'tests/bdd/steps/**/*.ts',
+      'tests/bdd/support/**/*.ts',
+    ],
+    paths: ['tests/bdd/features/**/*.feature'],
+    format: [
+      'html:cucumber-report.html',
+      'summary',
+    ],
+  },
 };

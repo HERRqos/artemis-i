@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "bdd": "cucumber-js"
+    "bdd": "npx wait-on tcp:4200 --interval 500 --timeout 15000 && npx cross-env TS_NODE_PROJECT=tests/bdd/tsconfig.json cucumber-js",
+    "bdd:local": "npx concurrently -k -s first \"npm start\" \"npx wait-on tcp:4200 --interval 500 --timeout 15000 && npx cross-env TS_NODE_PROJECT=tests/bdd/tsconfig.json cucumber-js\"",
+    "bdd:ci": "npx cross-env TS_NODE_PROJECT=tests/bdd/tsconfig.json cucumber-js"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +34,8 @@
     "@types/jasmine": "~5.1.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.9.1",
+    "concurrently": "^10.0.3",
+    "cross-env": "^10.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
