@@ -23,26 +23,26 @@ for reliable automation.
 ## Running the tests
 
 ### Unit tests
-\`\`\`
+```
 npm test
-\`\`\`
+```
 
 ### Playwright E2E
-\`\`\`
+```
 npm start          # terminal 1
 npx playwright test  # terminal 2
-\`\`\`
+```
 
 ### BDD (Cucumber/Gherkin)
-\`\`\`
+```
 npm start      # terminal 1
 npm run bdd    # terminal 2 — waits for server then runs Cucumber
-\`\`\`
+```
 
 Or start everything in one command (local only):
-\`\`\`
+```
 npm run bdd:local
-\`\`\`
+```
 
 CI uses `npm run bdd:ci` — server is managed by the pipeline.
 
