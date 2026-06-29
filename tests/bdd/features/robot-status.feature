@@ -1,7 +1,5 @@
 Feature: Robot Status Management
 
-  Background:
-
   Scenario: Operator starts a robot task
 
     Given the robot dashboard is open
