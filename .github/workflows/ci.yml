@@ -41,6 +41,12 @@ jobs:
       - name: E2E Tests (Playwright)
         run: npx playwright test
 
+      - name: Start dev server for BDD
+        run: npx ng serve &
+
+      - name: Wait for server
+        run: npx wait-on tcp:4200 --interval 500 --timeout 60000
+
       - name: BDD Tests (Cucumber)
         run: npm run bdd:ci
 
