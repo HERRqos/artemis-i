@@ -48,7 +48,7 @@ CI uses `npm run bdd:ci` — server is managed by the pipeline.
 
 ## Project structure
 
-\`\`\`
+```
 tests/
 ├── playwright-tests/   # Playwright E2E tests
 ├── bdd/
@@ -56,7 +56,7 @@ tests/
 │   ├── steps/          # Step definitions
 │   └── support/        # World and hooks
 └── api/                # API tests
-\`\`\`
+```
 
 ## CI
 
