@@ -1,20 +1,22 @@
 # Artemis I - Project Progress & Engineering Journal
 
-## Project Overview
+# Project Overview
 
 Artemis I is a robotics-inspired dashboard application created as a portfolio project to demonstrate practical software test automation skills.
 
-I started this project to learn, practice and demostrate the use if skills like Angular, Playwright, Cucumber, Git, Git Action and some other technologies I consider key to know when working on development projects, as well as practices like Test Documentation and Atumation Architecture.
+I started this project to learn, practice and demostrate the use of skills like Angular, Playwright, Cucumber, Git, Git Action and some other technologies I consider key to know when working on development projects, as well as practices like Test Documentation and Atumation Architecture.
 
-The project is intentionally small and focused. The goal is not to build a production robotics platform, but to create a realistic application that can be tested using professional automation techniques.
+The project is intentionally small and focused. 
+The goal is not to build a production robotics platform, but to create a realistic application that can be tested using professional automation techniques.
 
 ---
 
 # Professional Motivation
 
-I created this project to gain hands-on experience with modern test automation practices using TypeScript, Playwright, and Cucumber.
+I created this project to gain hands-on experience with modern test automation practices using TypeScript, Playwright, and Cucumber, thinh i like to implement in my actual job.
 
-My background combines Mechatronics Engineering, robotics-related research, and professional software development. Because software quality, reliability, and maintainability are critical in industrial and robotics environments, I wanted to build a small but realistic system that could be tested using industry-standard automation techniques.
+My background combines Mechatronics Engineering, robotics-related research, and professional software development. 
+Because software quality, reliability, and maintainability are critical in industrial and robotics environments, I wanted to build a small but realistic system that could be tested using industry-standard automation techniques.
 
 The goal of this project is not to simulate a complete robotics platform, but to demonstrate practical skills in automated testing, test design, CI/CD integration, and quality-focused software development.
 
@@ -22,7 +24,7 @@ The goal of this project is not to simulate a complete robotics platform, but to
 
 # Initial Project Planning
 
-## Original Goal
+# Goal
 
 Create a small but realistic robot monitoring dashboard that can be used as a target for automated testing.
 
@@ -40,31 +42,24 @@ The dashboard should support state changes that can later be automated through P
 
 # Architecture Decisions
 
-## Why Angular?
+# Why Angular?
 
-Angular was selected because:
-
-- Existing professional experience with Angular
-- Strong TypeScript integration
-- Common in enterprise software
-- Appropriate for dashboard-style applications
-- Allows focus on testing rather than learning a new frontend framework
+- I already have professional experience with Angular
+- It includes strong TypeScript integration
+- It is very common in enterprise software
+- It is appropriate for dashboard-style applications
+- It will help to focus on testing rather than learning a new frontend framework
 
 ---
 
-## Why Not React?
+# Why Not React?
 
-React would also be a valid choice.
-
-However:
-
-- The purpose of the project is test automation.
-- Learning React would not directly improve the testing objectives.
-- Angular allows faster implementation using existing knowledge.
+React would also be a valid choice. However, the purpose of the project is test automation. Learning React would not directly improve the testing objectives.
+I have already worked in Angular on my workplace.
 
 ---
 
-## Why CSR?
+# Why CSR?
 
 The application currently uses Client Side Rendering (CSR).
 
@@ -74,20 +69,13 @@ Reason:
 - SEO (Search engine optiomization) is not important.
 - The dashboard displays dynamic operational data.
 
-Examples:
-
-- HMIs
-- Robot dashboards
-- ERP systems
-- Monitoring systems
-
 ---
 
-## SSR and SSG Research Notes
+# SSR and SSG Research Notes
 
 During project planning, SSR and SSG concepts were reviewed.
 
-### SSR
+# SSR
 
 Server Side Rendering:
 
@@ -107,7 +95,7 @@ Useful for:
 
 ---
 
-### SSG
+# SSG
 
 Static Site Generation:
 
@@ -127,21 +115,9 @@ Useful for:
 
 ---
 
-### Conclusion
+# Conclusion
 
 SSR and SSG were intentionally not implemented because they do not provide meaningful value for a small robot monitoring dashboard.
-
----
-
-# Angular + Vite Notes
-
-Research was performed regarding Angular and Vite.
-
-Conclusion:
-
-Modern Angular already integrates Vite internally through Angular tooling.
-
-Custom Angular/Vite integration was intentionally avoided to keep the project focused.
 
 ---
 
@@ -151,7 +127,7 @@ The application was intentionally designed as a testable system.
 
 Key principles:
 
-### Stable Selectors
+# Stable Selectors
 
 Every important UI element uses:
 
@@ -167,11 +143,11 @@ data-testid="battery-level"
 data-testid="connection-status"
 ```
 
-This allows robust Playwright automation.
+This allows robust Playwright automation. Also makes easy to keep track when the project grows.
 
 ---
 
-### Separation of Responsibilities
+# Separation of Responsibilities
 
 Robot state is provided by:
 
@@ -199,7 +175,7 @@ Build a stable System Under Test before introducing Playwright.
 
 # Week 1 Deliverables
 
-## RobotState Model
+# RobotState Model
 
 Created:
 

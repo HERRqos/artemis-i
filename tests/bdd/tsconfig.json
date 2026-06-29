@@ -1,9 +1,11 @@
+// Separate tsconfig for Cucumber/BDD layer.
+// Cucumber requires CommonJS module resolution,
+// which conflicts with the Angular app's ES module setup.
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "types": ["node"],
     "esModuleInterop": true
   },
   "ts-node": {
